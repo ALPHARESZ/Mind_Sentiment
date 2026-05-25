@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-tensorflow
-numpy
-scikit-learn
-nltk
-deep-translator
-pydantic
-python-dotenv
