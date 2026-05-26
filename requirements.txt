@@ -7,3 +7,4 @@ nltk
 deep-translator
 pydantic
 python-dotenv
+google-genai
