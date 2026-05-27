@@ -3,8 +3,10 @@ from typing import List
 
 class JournalItem(BaseModel):
 
-    day: int
-    text: str
+    translated_text: str
+
+    label: str
+
 
 class WeeklyJournalRequest(BaseModel):
 

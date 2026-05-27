@@ -1,6 +1,8 @@
 def build_context(results):
 
-    context = "Weekly Journaling Analysis:\n\n"
+    context = (
+        "Weekly Journaling Analysis:\n\n"
+    )
 
     for item in results:
 

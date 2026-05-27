@@ -1,57 +1,52 @@
-from app.services.classification_service import (
-    classify_journal
-)
-
 from app.services.genai_service import (
-    generate_motivation
+    generate_ai_response
 )
 
-NEGATIVE_LABELS = [
-    "negative",
-    "stress",
-    "burnout",
-    "sad"
-]
+from app.utils.burnout_engine import (
+    analyze_burnout
+)
 
-async def analyze_weekly_journals(journals):
+async def analyze_weekly_journals(
+    journals
+):
+
+    labels = []
 
     results = []
 
-    negative_count = 0
+    i = 0
 
     for journal in journals:
+        i += 1
+        label = journal.label.lower()
 
-        result = classify_journal(
-            journal.text
-        )
+        labels.append(label)
 
-        item = {
-            "day": journal.day,
-            "original_text": journal.text,
-            **result
-        }
+        results.append({
+            "day": i,
+            "translated_text": journal.translated_text,
+            "label": label
+        })
 
-        results.append(item)
-
-        if result["label"].lower() in NEGATIVE_LABELS:
-
-            negative_count += 1
-
-    burnout_detected = (
-        negative_count >= 4
+    burnout_result = analyze_burnout(
+        labels
     )
 
-    motivation = None
-
-    if burnout_detected:
-
-        motivation = await generate_motivation(
-            results
-        )
+    ai_message = await generate_ai_response(
+        results=results,
+        prompt_mode=burnout_result[
+            "prompt_mode"
+        ],
+        state=burnout_result[
+            "state"
+        ]
+    )
 
     return {
-        "burnout_detected": burnout_detected,
-        "negative_days": negative_count,
-        "results": results,
-        "motivation": motivation
+
+        "state": burnout_result[
+            "state"
+        ],
+
+        "message": ai_message
     }
