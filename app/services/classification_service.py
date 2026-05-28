@@ -61,14 +61,7 @@ def classify_journal(text):
         predicted_index
     ]
 
-    confidence = float(
-        prediction[predicted_index]
-    )
-
     return {
-        "original_text": text,
         "translated_text": translated_text,
-        "cleaned_text": cleaned_text,
         "label": label,
-        "confidence": confidence
     }
