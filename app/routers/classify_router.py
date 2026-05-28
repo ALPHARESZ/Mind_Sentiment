@@ -14,7 +14,7 @@ router = APIRouter()
 async def classify(request: JournalRequest):
 
     result = classify_journal(
-        request.text
+        request.content
     )
 
     return result
