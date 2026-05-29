@@ -19,8 +19,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python -m nltk.downloader stopwords wordnet omw-1.4
 
 # Copy seluruh isi folder app
-COPY app/ .
+COPY app/ ./app/
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
