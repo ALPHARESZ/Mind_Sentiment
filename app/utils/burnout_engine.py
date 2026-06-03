@@ -116,7 +116,7 @@ def analyze_burnout(labels):
     ):
 
         return {
-            "state": "severe_burnout",
+            "state": "Severe Burnout",
             "prompt_mode": "motivation"
         }
 
@@ -127,7 +127,7 @@ def analyze_burnout(labels):
     ):
 
         return {
-            "state": "burnout_risk",
+            "state": "Burnout Risk",
             "prompt_mode": "motivation"
         }
 
@@ -138,7 +138,7 @@ def analyze_burnout(labels):
     ):
 
         return {
-            "state": "emotional_instability",
+            "state": "Emotional Instability",
             "prompt_mode": "support"
         }
 
@@ -151,7 +151,7 @@ def analyze_burnout(labels):
     ):
 
         return {
-            "state": "adjustment_needed",
+            "state": "Adjustment Needed",
             "prompt_mode": "adjustment"
         }
 
@@ -161,11 +161,11 @@ def analyze_burnout(labels):
     ):
 
         return {
-            "state": "healthy",
+            "state": "Healthy",
             "prompt_mode": "congrats"
         }
 
     return {
-        "state": "stable",
+        "state": "Stable",
         "prompt_mode": "support"
     }
